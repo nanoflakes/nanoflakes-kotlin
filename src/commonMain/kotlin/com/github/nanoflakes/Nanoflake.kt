@@ -115,10 +115,10 @@ class Nanoflake {
     /**
      * {@inheritDoc}
      */
-    override fun equals(o: Any?): Boolean {
-        if (this === o) return true
-        if (o == null || o !is Nanoflake) return false
-        return epoch == o.epoch && value == o.value
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other == null || other !is Nanoflake) return false
+        return epoch == other.epoch && value == other.value
     }
 
     /**
