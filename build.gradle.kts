@@ -8,7 +8,7 @@ plugins {
 apply(plugin = "com.jfrog.bintray")
 
 group = "com.github.nanoflakes"
-version = "1.2"
+version = "1.2.1"
 
 repositories {
     mavenCentral()

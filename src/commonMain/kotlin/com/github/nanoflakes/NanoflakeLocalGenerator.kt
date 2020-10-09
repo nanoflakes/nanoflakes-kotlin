@@ -59,6 +59,6 @@ class NanoflakeLocalGenerator(private val epoch: Long, private val generatorId: 
 
     init {
         require(epoch <= currentTimeMillis()) { "Specified epoch is on the future." }
-        require(epoch in 0..MAX_GENERATOR_ID) { "Invalid generator id, outside of [0, $MAX_GENERATOR_ID] range" }
+        require(generatorId in 0..MAX_GENERATOR_ID) { "Invalid generator id, outside of [0, $MAX_GENERATOR_ID] range" }
     }
 }
