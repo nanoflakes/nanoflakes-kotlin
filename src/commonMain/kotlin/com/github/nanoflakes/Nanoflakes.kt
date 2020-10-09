@@ -45,8 +45,8 @@ object Nanoflakes {
      * @param generatorId the generator id.
      * @return a new local nanoflake generator.
      */
-    fun localGenerator(epoch: Long, generatorId: Long): com.github.nanoflakes.NanoflakeGenerator {
-        return com.github.nanoflakes.NanoflakeLocalGenerator(epoch, generatorId)
+    fun localGenerator(epoch: Long, generatorId: Long): NanoflakeGenerator {
+        return NanoflakeLocalGenerator(epoch, generatorId)
     }
 
     /**

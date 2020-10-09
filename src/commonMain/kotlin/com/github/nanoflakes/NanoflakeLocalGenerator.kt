@@ -7,17 +7,15 @@ import com.github.nanoflakes.Nanoflakes.TIMESTAMP_SHIFT
 
 /**
  * A local generator of [nanoflakes][Nanoflake].
+ * @constructor Creates a new local generator of [nanoflakes][Nanoflake].
+ * @param epoch       the generator's epoch.
+ * @param generatorId the generator's ID.
  */
-class NanoflakeLocalGenerator(epoch: Long, generatorId: Long) : NanoflakeGenerator {
-    private val epoch: Long
-    private val generatorId: Long
+class NanoflakeLocalGenerator(private val epoch: Long, private val generatorId: Long) : NanoflakeGenerator {
     private var lastTimestamp = -1L
     private var sequence = 0L
 
-    /**
-     * {@inheritDoc}
-     */
-    override fun next(): Nanoflake? {
+    override fun next(): Nanoflake {
         var timestamp: Long = currentTimeMillis()
         if (timestamp < lastTimestamp) {
             throw RuntimeException("Clock moved backwards. Refusing to generate for " + (lastTimestamp - timestamp) + "milliseconds.")
@@ -35,39 +33,22 @@ class NanoflakeLocalGenerator(epoch: Long, generatorId: Long) : NanoflakeGenerat
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
     override fun epochMillis(): Long {
         return epoch
     }
 
-    /**
-     * {@inheritDoc}
-     */
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other == null || other !is NanoflakeLocalGenerator) return false
         return epoch == other.epoch && generatorId == other.generatorId
     }
 
-    /**
-     * {@inheritDoc}
-     */
     override fun hashCode(): Int {
-        return arrayOf<Any?>(epoch, generatorId).contentHashCode()
+        return arrayOf(epoch, generatorId).contentHashCode()
     }
 
-    /**
-     * {@inheritDoc}
-     */
     override fun toString(): String {
-        return "NanoflakeLocalGenerator{" +
-                "epoch=" + epoch +
-                ", generatorId=" + generatorId +
-                ", lastTimestamp=" + lastTimestamp +
-                ", sequence=" + sequence +
-                '}'
+        return "NanoflakeLocalGenerator{epoch=$epoch, generatorId=$generatorId, lastTimestamp=$lastTimestamp, sequence=$sequence}"
     }
 
     private fun tilNextMillis(lastTimestamp: Long): Long {
@@ -76,20 +57,8 @@ class NanoflakeLocalGenerator(epoch: Long, generatorId: Long) : NanoflakeGenerat
         return timestamp
     }
 
-    /**
-     * Creates a new local generator of [nanoflakes][Nanoflake].
-     *
-     * @param epoch       the generator's epoch.
-     * @param generatorId the generator's ID.
-     */
     init {
-        if (epoch > currentTimeMillis()) {
-            throw IllegalArgumentException("Specified epoch is on the future.")
-        }
-        if (generatorId < 0 || generatorId > MAX_GENERATOR_ID) {
-            throw IllegalArgumentException("Invalid generator id.")
-        }
-        this.epoch = epoch
-        this.generatorId = generatorId
+        require(epoch > currentTimeMillis()) { "Specified epoch is on the future." }
+        require(epoch !in 0..MAX_GENERATOR_ID) { "Invalid generator id, outside of [0, $MAX_GENERATOR_ID] range" }
     }
 }

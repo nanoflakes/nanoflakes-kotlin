@@ -9,7 +9,7 @@ interface NanoflakeGenerator {
      *
      * @return a new, generated nanoflake.
      */
-    operator fun next(): Nanoflake?
+    operator fun next(): Nanoflake
 
     /**
      * Gets this nanoflake generator's epoch.
