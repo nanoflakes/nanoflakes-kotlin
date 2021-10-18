@@ -1,23 +1,25 @@
 # Nanoflakes - Kotlin
 
+[![Maven metadata URL](https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Fmaven.cafeteria.dev%2Freleases%2Fcom%2Fgithub%2Fnanoflakes%2Fnanoflakes-kotlin%2Fmaven-metadata.xml)](https://maven.cafeteria.dev/releases/com/github/nanoflakes/nanoflakes-kotlin)
+[![GitHub issues](https://img.shields.io/github/issues/nanoflakes/nanoflakes-kotlin)](https://github.com/nanoflakes/nanoflakes-kotlin/issues)
+[![License](https://img.shields.io/github/license/nanoflakes/nanoflakes-kotlin)](https://github.com/nanoflakes/nanoflakes-kotlin/tree/master/LICENSE)
+[![Twitter](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2Fnanoflakes%2Fnanoflakes-kotlin)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Fnanoflakes%2Fnanoflakes-kotlin)
+
 Reference implementation of [nanoflakes](https://github.com/nanoflakes/nanoflakes) for Kotlin.
 
-Licensed under the [MIT License](https://github.com/nanoflakes/nanoflakes-java/blob/master/LICENSE).
+Licensed under the [MIT License](https://github.com/nanoflakes/nanoflakes-kotlin/blob/master/LICENSE).
 
 ### Installation
-
-![Latest Version](https://api.bintray.com/packages/nanoflakes/maven/nanoflakes-kotlin/images/download.svg)
 
 Using in Gradle:
 
 ```gradle
 repositories {
-  maven { url "https://dl.bintray.com/nanoflakes/maven"  }
+  maven { url = 'https://maven.cafeteria.dev' }
 }
 
 dependencies {
-  // replace FLAVOR with either "js" or "jvm", replace LATEST with the version above
-  compile 'com.github.nanoflakes:nanoflakes-kotlin-FLAVOR:LATEST'
+  implementation 'com.github.nanoflakes:nanoflakes-kotlin:VERSION'
 }
 ```
 
@@ -35,8 +37,8 @@ Using in Maven:
 <dependencies>
   <dependency>
     <groupId>com.github.nanoflakes</groupId>
-    <artifactId>nanoflakes-kotlin-FLAVOR</artifactId> <!-- replace FLAVOR with either "js" or "jvm" -->
-    <version>LATEST</version> <!-- replace LATEST with the version above -->
+    <artifactId>nanoflakes-kotlin</artifactId>
+    <version>VERSION</version>
   </dependency>
 </dependencies>
 ```
